@@ -25,7 +25,7 @@ Werden keine reflektierten Schallwellen empfangen, wird ein Zeitsignal t = 38ms 
 Abb. 24 Das Signal vom Echo-PIN korrespondiert mit der Zeit.
 
 ## Code
-```
+```cpp
 // UltraSonic-Distance-Sensor PINs
 #define trigPin 3
 
@@ -35,16 +35,29 @@ Abb. 24 Das Signal vom Echo-PIN korrespondiert mit der Zeit.
 unsigned int obstacleDistance;
 
 void setup() {
+
+  Serial.begin(9600);
+
   // UltraSonic-Distance sensor PINs
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
+
 }
 
 void loop() {
+
   obstacleDistance = detectObstacleRange();
+
+  // Print distance to Serial
+  Serial.println(obstacleDistance);
+
+  delay(1000);
+  return;  
+
 }
 
 unsigned long detectObstacleRange() {
+
     digitalWrite(trigPin, LOW);
     delayMicroseconds(2);
     
