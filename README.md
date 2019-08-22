@@ -26,48 +26,54 @@ Abb. 24 Das Signal vom Echo-PIN korrespondiert mit der Zeit.
 
 ## Code
 ```cpp
+
 // UltraSonic-Distance-Sensor PINs
+#define echoPin 4
 #define trigPin 3
 
-#define echoPin 4
- 
-// UltraSonic-Sensor value
-unsigned int obstacleDistance;
+// Park-Sensor value
+unsigned int range2Obstacle;
+unsigned int tmp_range2Obstacle;
 
 void setup() {
 
-  Serial.begin(9600);
-
-  // UltraSonic-Distance sensor PINs
+  // UltraSonic-Distance-Sensor PINs
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-
 }
 
 void loop() {
 
-  obstacleDistance = detectObstacleRange();
-
-  // Print distance to Serial
-  Serial.println(obstacleDistance);
+  range2Obstacle = ultrasonicScan();
 
   delay(1000);
   return;  
-
 }
 
-unsigned long detectObstacleRange() {
+// @return: unsigned int
+unsigned long ultrasonicScan() {
 
-    digitalWrite(trigPin, LOW);
-    delayMicroseconds(2);
-    
-    digitalWrite(trigPin, HIGH);
-    delayMicroseconds(10);
-    digitalWrite(trigPin, LOW);
+  // recieve signal to distance
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
 
-    echoSignal = pulseIn(echoPin, HIGH);
-    return ((echoSignal / 2) / 29.1);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+
+  digitalWrite(trigPin, LOW);
+
+  tmp_range2Obstacle = pulseIn(echoPin, HIGH);
+
+  return ((tmp_range2Obstacle / 2) / 29.1);
 }
+
+// Annäherungsfunktion
+double validateSharpRange(double distance) {
+  
+  double erg = 11 - squaref((119 - 2 * distance + 3));
+  return erg;
+}
+
 ```
 
 Im Programmcode wandelt der Rückgabewert ((Echo / 2) / 29.1) von der Funktion `detectObstacleRange()` das Signal des Sensors, von Mikrosekunden in Zentimeter um.
