@@ -7,21 +7,21 @@ Der Abstand vom Sende -/ Empfängermodul (Parksensor JSN-SROT4-2.0) zum reflekti
 ## Funktionsweise
 
 Ein Impuls von mindestens 10µs wird an den Trigger-PIN angelegt. 
-![JSN](https://github.com/NoLogig/blob/Ultrasonic-Distance/JSN-SROT4-2.0_0.png)
+![JSN](https://github.com/NoLogig/Ultrasonic-Distance-Measure/blob/master/img/JSN-SROT4-2.0_0.png)
 Abb. 21 Ein 10µs Impuls am Trigger-PIN
 
 Sensor generiert automatisch 8 Impulse 40kHz über das Sende-/Empfängermodul.  
-![JSN](https://github.com/NoLogig/blob/Ultrasonic-Distance/JSN-SROT4-2.0_1.png)
+![JSN](https://github.com/NoLogig/Ultrasonic-Distance-Measure/blob/master/img/JSN-SROT4-2.0_1.png)
 Abb. 22 Erzeugte Rechteckschwingung mit 8, 40kHz Impulse.
 
 Impulse werden von einer Oberfläche reflektiert und am Sende-/Empfängermodul empfangen.
-![JSN](https://github.com/NoLogig/blob/Ultrasonic-Distance/img/iJSN-SROT4-2.0_2.png)
+![JSN](https://github.com/NoLogig/Ultrasonic-Distance-Measure/blob/master/img/JSN-SROT4-2.0_2.png)
 Abb. 23 Impulse werden vom Objekt zurück zum Sende-/Empfängermodul reflektiert.
 
 Am Echo-PIN wird ein Signal generiert, das der Zeit zwischen den gesendeten Schallimpulsen und den empfangenen Schallreflexionen entspricht.
 Der nächste Impuls kann gesendet werden, wenn das Echo nachgelassen hat.
 Werden keine reflektierten Schallwellen empfangen, wird ein Zeitsignal t = 38ms erzeugt. 
-![JSN](https://github.com/NoLogig/blob/Ultrasonic-Distance/JSN-SROT4-2.0_3.png)
+![JSN](https://github.com/NoLogig/Ultrasonic-Distance-Measure/blob/master/img/JSN-SROT4-2.0_3.png)
 Abb. 24 Das Signal vom Echo-PIN korrespondiert mit der Zeit.
 
 ## Code
